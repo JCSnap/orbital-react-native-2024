@@ -9,7 +9,9 @@ Adapted from [Orbital Workshop 2023](https://github.com/yadunut/orbital-react-na
 - NUS Hackers coreteam member
 - Used React Native for my Orbital 2023 project - [SoulScribe](https://tinyurl.com/soulscribeai)
 - Created Minimum Viable Products (MVPs) for a few startups using React Native
-  ![Picture](./images/5856.png)
+<p align="center">
+  <img src="./images/5856.png" width="300" alt="Picture">
+</p>
 
 ## Overview
 
