@@ -19,11 +19,11 @@ Adapted from [Orbital Workshop 2023](https://github.com/yadunut/orbital-react-na
 
 - A bit about React Native
 - Setting up React Native + simulator
-- Creating UI with React Native (JSX Components)
-- Creating logic with React Native (React hooks, basic Javascript)
+- Intro to JSX
+- Intro to React Native Components
 - Styling UI with React Native
-- Organizing files and code with React Native
-- Prompt engineering + google tricks for React Native
+- State management with React Native
+- Let's build an app!
 
 ### Part 2
 
@@ -43,8 +43,7 @@ Adapted from [Orbital Workshop 2023](https://github.com/yadunut/orbital-react-na
 - I will be going through some concepts with some real life demo
 
 ## What we will be building
-
-[To be inserted]
+![nextbus](./images/nextbus.jpg)
 
 ## Why React Native?
 
@@ -70,6 +69,153 @@ Follow the instructions [here](https://docs.expo.dev/workflow/android-studio-emu
 3. Run `npm run android` or `npm run ios` (note that only Mac users can use this command)
 4. Try editing some text and see the changes in real time!
 
+## Intro to JSX
+### Rules
+- Any javascript in JSX must be enclosed by `{}`
+- Components names MUST start with Capital Letter
+```JSX
+function App() {
+    const name = "app";
+    return (
+        <View>
+            <Text>{name}</Text>
+        </View>
+    );
+}
+```
+### These two are equivalent
+#### Using const syntax for javascript
+```javascript
+const logHelloWorld = () => {
+    console.log("Hello World");
+}
+```
+#### Using function syntax for javascript
+```javascript
+function logHelloWorld() {
+    console.log("Hello World");
+}
+```
+
+### These two are equivalent
+#### Using const syntax for JSX
+```JSX
+const App = () => {
+    return (
+        <View>
+            <Text>This is an app</Text>
+        </View>
+    );
+}
+```
+#### Using function syntax for JSX
+```JSX
+function App() {
+    return (
+        <View>
+            <Text>This is an app</Text>
+        </View>
+    );
+}
+```
+
+### These two are equivalent
+#### Closing tag for components that do not encapsulate anything
+```JSX
+function App() {
+    return (
+        <Button title="Press Me"></Button>
+    );
+}
+```
+#### Self-closing tag for components that do not encapsulate anything
+```JSX
+function App() {
+    return (
+        <Button title="Press Me" />
+    );
+}
+```
+
+### These three are equivalent
+#### Nesting components together
+```JSX
+const MainComponent = () => {
+    return (
+        <View>
+            <View>
+                <Text>Subcomponent one</Text>
+            </View>
+            <View>
+                <Text>Subcomponent two</Text>
+            </View>
+        </View>
+    );
+}
+```
+#### Extracting the components into their own components within the same page
+```JSX
+const MainComponent = () => {
+    return (
+        <View>
+            <SubComponentOne />
+            <SubComponentTwo />
+        </View>
+    );
+}
+
+const SubComponentOne = () => {
+    return (
+        <View>
+            <Text>Subcomponent one</Text>
+        </View>
+    );
+}
+
+const SubComponentTwo = () => {
+    return (
+        <View>
+            <Text>Subcomponent two</Text>
+        </View>
+    );
+}
+```
+#### Extracting the components into their own components into other files, export them and importing them for use
+```JSX
+// index.jsx
+import SubComponentOne from "./component-one.jsx"
+import SubComponentTwo from "./component-two.jsx"
+
+const MainComponent = () => {
+    return (
+        <View>
+            <SubComponentOne />
+            <SubComponentTwo />
+        </View>
+    );
+}
+
+// component-one.jsx
+const SubComponentOne = () => {
+    return (
+        <View>
+            <Text>Subcomponent one</Text>
+        </View>
+    );
+}
+export default SubComponentOne;
+
+// component-two.jsx
+const SubComponentTwo = () => {
+    return (
+        <View>
+            <Text>Subcomponent two</Text>
+        </View>
+    );
+}
+export default SubComponentTwo;
+```
+
 ## Creating UI with React Native
 
 Think of it as a tool that allows you to to create stuff with logic and UI. Since CS1101S (or any of the CS1010 variants) focuses mainly on logic, this might be the first time you are dealing with UI.
@@ -77,50 +223,91 @@ Think of it as a tool that allows you to to create stuff with logic and UI. Sinc
 Normally, UI on the web is rendered with HTML. Likewise, we can create UI with HTML-like syntax.
 
 ### Common React Native Components
-- `View`:
-- `Text`:
-- `Button`:
-- `TouchableOpacity`: 
-- `TextInput`:
+These components are enough to solve 90% of your needs.
+- `View`: A container like `div`
+- `ScrollView`: Like `View` but Scrollable
+- `Text`: Displays texts
+- `Button`: Supports touches
+- `TouchableOpacity`: Like `Button` but can encapsulate Button
+- `TextInput`: Supports inputting texts
+- `Image`: Display images
 
 You can read up on other components [here](https://reactnative.dev/docs/components-and-apis).
 
 ### Organizing Components
 Components can be organized using [flex box](https://css-tricks.com/snippets/css/a-guide-to-flexbox/). Understanding the 4 concepts below can meet 90% of your needs. Later on we will try to create the mockup for NUS NextBUS using these concepts alone.
 
-### Flex direction
+#### Flex direction
 ![flex direction](./images/flex-direction.png)
 - `row`: organize components horizontally
 - `column`: organize components vertically
 
-### Justify content
+#### Justify content
 ![justify content](./images/justify.png)
 - `space-between`: Spread out components evenly. First component at the left end, last component at the end.
 - `center`: Components are centered.
 
+## Props
+Props is how react components communcate with each other. Every parent component can pass information to its child components by giving them props.
+
+We've already seen props (short for properties) before, like how we pass in `onPress` is passed to the `Button` component, or how the `styles` is passed to the `View` component. Just like how functions can take in arguments, components can take in properties.
+
 ### Tips
 - To visualise the container, change the background colour
-### Recap of Javascript
 
-### Intro to JSX
+## State Management
+Lets build an app with 3 simple things.
 
-### React Native Components
+1. A `Text` showing the counter value, initial value of counter = 0
+2. A `Button` to increment the counter
+3. Another `Button` to decrement the counter
 
-[Demo some of the commonly used components like `Text`, `ScrollView`, `TextInput`, `Button`, `Image`]
+### Takeaways
+- React Native does not know when to re-render the component
+using `let counter = 0` and updating it breaks the rules for props stated above, it is mutating the value
+- Thus, react provides us this hook useState for us to let react know when state has been updated
 
-## Creating logic with React Native
+```JSX
+function Component() {
+    const [counter, setCounter] = useState(0);
+    ...
+    // DONT DO THIS, mutating counter doesn't tell react to rerender
+    <Button onPress={() => counter += 1}>
+    // No mutation. The counter value is updated in the next render
+    <Button onPress={() => setCounter(counter + 1)}>
+}
+```
 
-Components can have the business logic, as well as the code to create the UI.
+### States are used everywhere
+#### TextInput
+In the text input, every time the user types something, the text changes. We use `useState` to track and update the text every time it changes.
+```JSX
+function Component() {
+    const [text, setText] = useState('');
+    // Both methods below are equivalent
+    return (<View><TextInput value={text} onChange={t => setText(t)}/></Text>
+    return (<View><TextInput value={text} onChange={setText}/></Text>
+}
+```
+#### Conditional Rendering
+```JSX
+function App() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-### React hooks
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    }
 
-Two of the most commonly used hooks are `useState` and `useEffect` (not the scope of this workshop)
+    return (
+        <View>
+            <Button title="Toggle Modal" onPress={toggleModal} />
+            {isModalOpen && <ModalComponent />}
+        </View>
+    );
+}
+```
 
-[Quick demo on useState to create counter]
+## Let's build the NUS NextBUS App!
+![Nextbus](./images/nextbus.jpg)
 
-## Styling
-
-The current design looks ugly. You can create styles (change the colour, size etc.) of the UI using `StyleSheet` or `Nativewind` (Tailwind equivalent but not under the scope of this workshop)
-
-## Design pages
-- Go through different existing apps
+## Part 2
