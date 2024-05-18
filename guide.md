@@ -2,6 +2,8 @@
 
 Adapted from [Orbital Workshop 2023](https://github.com/yadunut/orbital-react-native-2023/blob/main/slides/part1.md)
 
+Additional information can be found in the [NUS Hackers React Native wiki](https://wiki.nushackers.org/orbital/react-native)
+
 ## About Me
 
 - Justin Cheah Yun Fei
