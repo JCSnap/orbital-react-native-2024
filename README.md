@@ -7,3 +7,4 @@ This repository is for the Orbital React Native workshop. It is an introduction 
 Refer to the [guide](./guide.md)
 
 ## Hands-on materials
+Refer to [workshop](./workshop/blank/)
