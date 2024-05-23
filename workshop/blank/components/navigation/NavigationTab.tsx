@@ -11,7 +11,6 @@ const NavigationTab = () => {
 
     const handleTabPress = ({ name }: { name: string }) => {
         console.log(name);
-        let route = "";
     };
 
     return (
