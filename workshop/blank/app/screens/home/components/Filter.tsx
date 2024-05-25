@@ -1,5 +1,5 @@
-import { View, TextInput, Button } from "react-native";
 import { useState } from "react";
+import { View, TextInput, Button } from "react-native";
 
 const Filter = () => {
     const [searchText, setSearchText] = useState("");
