@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import Home from "./screens/home";
+import Home from "./home-screen";
 
 export default function Index() {
     return (

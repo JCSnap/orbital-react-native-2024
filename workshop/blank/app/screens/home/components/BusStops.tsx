@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, Button } from "react-native";
 import { useState } from "react";
+import Toast from "react-native-toast-message";
 
 const BusStops = () => {
     const busStops = [
@@ -49,6 +50,18 @@ const BusStop = ({ name, shortName, distance }: BusStopProps) => {
         { time: "13:00", bus: "A3" },
     ];
 
+    const getBusStopDetails = async () => {
+        try {
+            const response = await fetch(
+                "https://n784k2f6s0.execute-api.ap-southeast-1.amazonaws.com/prod/bus-stop-details"
+            );
+            const data = await response.json();
+            console.log(data.busStopDetails.blueBus);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const isToggledClass = isFavourited ? "bg-blue-500" : "bg-gray-500";
 
     return (
@@ -65,7 +78,7 @@ const BusStop = ({ name, shortName, distance }: BusStopProps) => {
                         </View>
                         <Text>{shortName}</Text>
                     </View>
-                    <Button title="Refresh" />
+                    <Button title="Refresh" onPress={getBusStopDetails} />
                 </View>
                 {isBusStopInformationOpen && <BusStopTimings timings={timings} />}
             </View>
