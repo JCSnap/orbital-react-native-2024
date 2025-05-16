@@ -1,4 +1,4 @@
-# Orbital React Native 2024
+# Orbital React Native 2024 & 2025
 
 This repository is for the Orbital React Native workshop. It is an introduction to React Native and touches on how to get started with React Native (expo) development.
 
