@@ -29,8 +29,10 @@ Additional information can be found in the [NUS Hackers React Native wiki](https
 
 ### Part 2
 
--   Create multiple screens (Routing)
+-   Dealing with external APIs
 -   When and how to use libraries
+-   Developing in a clean and modular way
+-   Using external services (eg. DB)
 
 ## Setting expectations
 
