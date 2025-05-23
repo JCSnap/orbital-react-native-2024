@@ -2,6 +2,7 @@ import { View, Text, Button, Image, TouchableOpacity, TextInput, ScrollView } fr
 import { useState } from 'react';
 import BusStopTimings from 'components/constants/bus-stops';
 import NavigationBar from 'components/reusable/navigation-bar';
+import './global.css';
 
 type BusStop = {
   id: number;
